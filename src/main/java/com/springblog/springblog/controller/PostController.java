@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.springblog.springblog.payload.PostDto;
 import com.springblog.springblog.payload.PostResopnse;
 import com.springblog.springblog.service.PostService;
+import com.springblog.springblog.utils.AppConstants;
 
 //
 @RestController
@@ -49,10 +50,10 @@ public class PostController {
 	// get all posts
 	@GetMapping
 	public PostResopnse getAllPosts(
-			@RequestParam(value = "pageNo", defaultValue = "0", required = false) int pageNo,
-			@RequestParam(value = "pageSize", defaultValue = "10", required =  false) int pageSize,
-			@RequestParam(value = "sortBy", defaultValue = "id", required =  false) String sortBy,
-			@RequestParam(value = "sortDir", defaultValue = "asc", required =  false) String sortDir
+			@RequestParam(value = "pageNo", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER_STRING , required = false) int pageNo,
+			@RequestParam(value = "pageSize", defaultValue = AppConstants.DEFAULT_PAGE_SIZE_STRING, required =  false) int pageSize,
+			@RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY, required =  false) String sortBy,
+			@RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION, required =  false) String sortDir
 
 			){
 		
