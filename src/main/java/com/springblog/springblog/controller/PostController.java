@@ -18,6 +18,7 @@ import com.springblog.springblog.payload.PostDto;
 import com.springblog.springblog.payload.PostResopnse;
 import com.springblog.springblog.service.PostService;
 
+//
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
