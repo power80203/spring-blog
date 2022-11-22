@@ -2,6 +2,8 @@ package com.springblog.springblog.payload;
 
 import lombok.Data;
 
+//dto
+
 @Data
 public class CommentDto {
 	
