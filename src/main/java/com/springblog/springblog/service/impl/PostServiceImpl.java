@@ -3,6 +3,7 @@ package com.springblog.springblog.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,11 +23,14 @@ public class PostServiceImpl implements PostService {
 	
 	private PostRepository postRepository;
 	
+	private ModelMapper mapper;
 	
 
-	public PostServiceImpl(com.springblog.springblog.repository.PostRepository postRepository) {
+	public PostServiceImpl(com.springblog.springblog.repository.PostRepository postRepository,
+			ModelMapper mapper) {
 		super();
 		this.postRepository = postRepository;
+		this.mapper = mapper;
 	}
 
 
@@ -87,13 +91,16 @@ public class PostServiceImpl implements PostService {
 	
 	// convert entity to Dto
 	
-	private PostDto mapToDto(Post Post) {
+	private PostDto mapToDto(Post post) {
 		
-		PostDto postdto = new PostDto();
-		postdto.setId(Post.getId());
-		postdto.setContent(Post.getContent());
-		postdto.setTitle(Post.getTitle());
-		postdto.setDescription(Post.getDescription());
+//		PostDto postdto = new PostDto();
+//		postdto.setId(Post.getId());
+//		postdto.setContent(Post.getContent());
+//		postdto.setTitle(Post.getTitle());
+//		postdto.setDescription(Post.getDescription());
+		
+		//引入mapper之後的寫法
+		PostDto postdto = mapper.map(post, PostDto.class);
 
 
 		return postdto;
@@ -101,10 +108,13 @@ public class PostServiceImpl implements PostService {
 	
 	private Post mapToEntity(PostDto postDto) {
 		
-		Post post = new Post();
-		post.setTitle(postDto.getTitle());
-		post.setDescription(postDto.getDescription());
-		post.setContent(postDto.getContent());
+//		Post post = new Post();
+//		post.setTitle(postDto.getTitle());
+//		post.setDescription(postDto.getDescription());
+//		post.setContent(postDto.getContent());
+		
+		//引入mapper之後的寫法
+		Post post = mapper.map(postDto, Post.class);
 		
 		return post;
 	}

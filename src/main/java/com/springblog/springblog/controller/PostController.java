@@ -2,6 +2,8 @@ package com.springblog.springblog.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +21,7 @@ import com.springblog.springblog.payload.PostResopnse;
 import com.springblog.springblog.service.PostService;
 import com.springblog.springblog.utils.AppConstants;
 
-//
+
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
@@ -35,14 +37,11 @@ public class PostController {
 	
 	
 	//create new post
-	
 	@PostMapping
-	public ResponseEntity<PostDto> creatPost(@RequestBody PostDto postdto){
+	public ResponseEntity<PostDto> creatPost(@Valid @RequestBody PostDto postdto){
 		
 		//會被丟進來一個Body 包含了DTO
-		
-		// 回傳 狀態
-		return new ResponseEntity<>(pService.createPost(postdto),HttpStatus.CREATED);
+				return new ResponseEntity<>(pService.createPost(postdto),HttpStatus.CREATED);
 		
 	}
 	
@@ -74,7 +73,7 @@ public class PostController {
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postdto,
+	public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postdto,
 											  @PathVariable(name = "id") long id) {
 		
 		PostDto postResponse = pService.updatePost(postdto, id);

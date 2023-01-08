@@ -76,8 +76,5 @@ public class Post {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
-	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true) //cascade代表會自動操作更新)
-	private Set<Comment> comments = new HashSet<>();
 
 }
